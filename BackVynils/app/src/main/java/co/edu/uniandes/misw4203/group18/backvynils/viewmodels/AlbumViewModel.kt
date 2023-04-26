@@ -3,13 +3,15 @@ package co.edu.uniandes.misw4203.group18.backvynils.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
-import co.edu.uniandes.misw4203.group18.backvynils.network.AlbumServiceAdapter
+import co.edu.uniandes.misw4203.group18.backvynils.repositories.AlbumRepository
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>()
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
     private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+
+    private val albumsRepository = AlbumRepository(application)
 
     val albums: LiveData<List<Album>>
         get() = _albums
@@ -25,8 +27,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     }
 
     private fun refreshDataFromNetwork() {
-        AlbumServiceAdapter.getInstance().getAlbums(
-            getApplication(),
+        albumsRepository.updateAlbumData(
             {
                 _albums.postValue(it)
                 _eventNetworkError.value = false
