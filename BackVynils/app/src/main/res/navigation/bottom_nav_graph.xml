@@ -18,7 +18,11 @@
         android:id="@+id/artistListFragment"
         android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.ArtistListFragment"
         android:label="fragment_artist_list"
-        tools:layout="@layout/fragment_artist_list" />
+        tools:layout="@layout/fragment_artist_list" >
+    <action
+        android:id="@+id/action_artistListFragment_to_artistDetailFragment"
+        app:destination="@id/artistDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/collectorListFragment"
         android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.CollectorListFragment"
@@ -31,6 +35,15 @@
         tools:layout="@layout/fragment_album_detail" >
         <argument
             android:name="albumId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ArtistDetailFragment"
+        android:label="fragment_artist_detail"
+        tools:layout="@layout/fragment_artist_detail" >
+        <argument
+            android:name="artistId"
             app:argType="integer" />
     </fragment>
 </navigation>
