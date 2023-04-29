@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_albumListFragment_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment" />
+        <action
+            android:id="@+id/action_albumListFragment_to_albumCreateFragment"
+            app:destination="@id/albumCreateFragment" />
     </fragment>
     <fragment
         android:id="@+id/artistListFragment"
@@ -46,4 +49,9 @@
             android:name="artistId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/albumCreateFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.AlbumCreateFragment"
+        android:label="album_create_fragment"
+        tools:layout="@layout/album_create_fragment" />
 </navigation>

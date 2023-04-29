@@ -1,11 +1,12 @@
 package co.edu.uniandes.misw4203.group18.backvynils.ui
-
+import androidx.navigation.fragment.findNavController
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -38,8 +39,14 @@ class AlbumListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewModelAdapter = AlbumsAdapter()
-
         _binding = FragmentAlbumListBinding.inflate(inflater, container, false)
+        // Add click listener to createAlbumButton
+        binding.createAlbumButton.setOnClickListener {
+            val action = AlbumListFragmentDirections.actionAlbumListFragmentToAlbumCreateFragment()
+            val navController = findNavController()
+            navController.navigate(action)
+        }
+
         return binding.root
     }
 

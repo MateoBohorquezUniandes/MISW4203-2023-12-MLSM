@@ -19,7 +19,7 @@ data class Album(
         @SuppressLint("SimpleDateFormat")
         private val zonedFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         @SuppressLint("SimpleDateFormat")
-        private val desiredFormat = SimpleDateFormat("yyyy-mm-dd")
+        private val desiredFormat = SimpleDateFormat("dd-mm-yyyy")
     }
 
     val title: String
