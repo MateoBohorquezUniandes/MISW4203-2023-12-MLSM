@@ -13,4 +13,19 @@
     <string name="cover_image_url_hint">https://</string>
     <string name="create_album_button_text">Create</string>
     <string name="create">Create</string>
+    <string-array name="genre_items">
+        <item>Choose a genre</item>
+        <item>Classical</item>
+        <item>Salsa</item>
+        <item>Rock</item>
+        <item>Folk</item>
+    </string-array>
+    <string-array name="record_label_items">
+        <item>Choose a record label</item>
+        <item>Sony Music</item>
+        <item>EMI</item>
+        <item>Discos Fuentes</item>
+        <item>Elektra</item>
+        <item>Fania Records</item>
+    </string-array>
 </resources>
