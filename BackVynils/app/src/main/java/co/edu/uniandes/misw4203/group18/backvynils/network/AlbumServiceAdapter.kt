@@ -4,6 +4,7 @@ import android.content.Context
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import com.android.volley.VolleyError
 import org.json.JSONArray
+import org.json.JSONObject
 
 class AlbumServiceAdapter constructor() {
     companion object {
@@ -50,4 +51,26 @@ class AlbumServiceAdapter constructor() {
             { onError(it) }
         )
     }
+            fun postAlbum(
+            context: Context,
+            album: Album,
+            onComplete: () -> Unit,
+            onError: (error: VolleyError) -> Unit
+        ) {
+            val jsonObject = JSONObject()
+            jsonObject.put("name", album.name)
+            jsonObject.put("cover", album.cover)
+            jsonObject.put("recordLabel", album.recordLabel)
+            jsonObject.put("releaseDate", album.releaseDate)
+            jsonObject.put("genre", album.genre)
+            jsonObject.put("description", album.description)
+
+            VolleyServiceBroker.getInstance(context).postRequest(
+                albumPath,
+                jsonObject,
+                { onComplete() },
+                { onError(it) }
+            )
+        }
+
 }
