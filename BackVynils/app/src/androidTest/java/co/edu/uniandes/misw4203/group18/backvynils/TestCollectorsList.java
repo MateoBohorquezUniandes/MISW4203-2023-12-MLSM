@@ -31,13 +31,46 @@ public class TestCollectorsList {
     public ActivityScenarioRule<MainActivity> mActivityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest() {
+    public void mainActivityTest() throws InterruptedException {
         ViewInteraction collectorBtn = onView(allOf(withId(R.id.collectorListFragment)));
+        Thread.sleep(3000);
         collectorBtn.perform(click());
+        Thread.sleep(3000);
 
         ViewInteraction collectorItem = onView(allOf(withId(R.id.collectorName),withText("Manolo Bellon")));
         collectorItem.perform(click());
+        Thread.sleep(3000);
 
         onView(allOf(withId(R.id.textView2))).check(matches(withText("Hello blank fragment")));
+    }
+    @Test
+    public void cambioVistas() throws  InterruptedException {
+        ViewInteraction collectorBtn = onView(allOf(withId(R.id.collectorListFragment)));
+        Thread.sleep(3000);
+        collectorBtn.perform(click());
+        Thread.sleep(3000);
+
+        ViewInteraction albumBtn = onView(allOf(withId(R.id.albumListFragment)));
+        Thread.sleep(3000);
+        albumBtn.perform(click());
+        Thread.sleep(3000);
+
+        collectorBtn.perform(click());
+        Thread.sleep(3000);
+
+        ViewInteraction artistBtn = onView(allOf(withId(R.id.artistListFragment)));
+        Thread.sleep(3000);
+        artistBtn.perform(click());
+        Thread.sleep(3000);
+
+        collectorBtn.perform(click());
+        Thread.sleep(3000);
+
+        ViewInteraction collectorItem = onView(allOf(withId(R.id.collectorName),withText("Manolo Bellon")));
+        collectorItem.perform(click());
+        Thread.sleep(3000);
+
+        artistBtn.perform(click());
+        Thread.sleep(3000);
     }
 }
