@@ -97,46 +97,6 @@ class AlbumListFragment : Fragment() {
         _binding = null
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val activity = requireNotNull(this.activity) {
-            "Cannot access viewModel before onActivityCreated()"
-        }
-
-        activity.actionBar?.title = getString(R.string.title_albums_list_fragment)
-        viewModel = ViewModelProvider(
-            this,
-            AlbumViewModel.Factory(activity.application)
-        ).get(AlbumViewModel::class.java)
-
-        viewModel.albums.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) {
-                progressBar.visibility = GONE
-                it.apply {
-                    viewModelAdapter!!.albums = this
-                }
-            }
-        }
-
-        viewModel.eventNetworkError.observe(
-            viewLifecycleOwner
-        ) { isNetworkError ->
-            if (isNetworkError) onNetworkError()
-        }
-    }
-
-    private fun onNetworkError() {
-        if (!viewModel.isNetworkErrorShown.value!!) {
-            Toast.makeText(activity, "Connectivity Error", Toast.LENGTH_LONG).show()
-            viewModel.onNetworkErrorShown()
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onResume() {
         super.onResume()
         viewModel.refreshDataFromNetwork()
