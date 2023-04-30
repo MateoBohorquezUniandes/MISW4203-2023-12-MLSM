@@ -7,7 +7,7 @@ import com.android.volley.VolleyError
 class CollectorRepository(private val application: Application) {
 
     fun updateCollectorData(onCompleted: (List<Collector>)->Unit, onError: (VolleyError)->Unit) {
-        //CollectorServiceAdapter.getInstance().getCollectors(application,{onCompleted(it)}, onError)
-        CollectorServiceAdapter.getInstance().getCollectorsOffline({onCompleted(it)})
+        CollectorServiceAdapter.getInstance().getCollectors(application,{onCompleted(it)}, onError)
+        //CollectorServiceAdapter.getInstance().getCollectorsOffline({onCompleted(it)})
     }
 }
