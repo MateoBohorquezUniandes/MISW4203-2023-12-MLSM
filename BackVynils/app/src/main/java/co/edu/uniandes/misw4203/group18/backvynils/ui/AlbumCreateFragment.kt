@@ -18,6 +18,7 @@ import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import co.edu.uniandes.misw4203.group18.backvynils.viewmodels.AlbumViewModel
 import java.text.ParseException
 
+
 /**
  * A simple [Fragment] subclass.
  * Use the [AlbumCreateFragment.newInstance] factory method to
@@ -38,6 +39,8 @@ class AlbumCreateFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
         }
     }
 
