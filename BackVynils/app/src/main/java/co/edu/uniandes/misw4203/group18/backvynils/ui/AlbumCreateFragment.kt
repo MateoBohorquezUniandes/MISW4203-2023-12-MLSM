@@ -6,10 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
 import co.edu.uniandes.misw4203.group18.backvynils.R
 import androidx.navigation.fragment.findNavController
+import co.edu.uniandes.misw4203.group18.backvynils.models.Album
+import co.edu.uniandes.misw4203.group18.backvynils.viewmodels.AlbumViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,15 +27,20 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AlbumCreateFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var nameEditText: EditText
+    private lateinit var coverEditText: EditText
+    private lateinit var releaseDateEditText: EditText
+    private lateinit var descriptionEditText: EditText
+    private lateinit var genreSpinner: Spinner
+    private lateinit var recordLabelSpinner: Spinner
+    private lateinit var createButton: Button
+
+    private lateinit var viewModel: AlbumViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -46,7 +56,36 @@ class AlbumCreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ...
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(requireActivity().application)).get(AlbumViewModel::class.java)
+
+        nameEditText = view.findViewById(R.id.titleEditText)
+        coverEditText = view.findViewById(R.id.urlEditText)
+        releaseDateEditText = view.findViewById(R.id.releaseDateEditText)
+        descriptionEditText = view.findViewById(R.id.descriptionEditText)
+        genreSpinner = view.findViewById(R.id.genreSpinner)
+        recordLabelSpinner = view.findViewById(R.id.recordLabelSpinner)
+        createButton = view.findViewById(R.id.createButton)
+
+        createButton.setOnClickListener {
+            val name = nameEditText.text.toString()
+            val cover = coverEditText.text.toString()
+            val releaseDate = releaseDateEditText.text.toString()
+            val description = descriptionEditText.text.toString()
+            val genre = genreSpinner.selectedItem.toString()
+            val recordLabel = recordLabelSpinner.selectedItem.toString()
+
+            val album = Album(
+                albumId = 0,
+                name = name,
+                cover = cover,
+                releaseDate = releaseDate,
+                description = description,
+                genre = genre,
+                recordLabel = recordLabel
+            )
+
+            viewModel.postAlbum(album)
+        }
     }
 
 
