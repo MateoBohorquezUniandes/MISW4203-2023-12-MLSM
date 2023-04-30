@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -100,6 +99,7 @@ class AlbumListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        viewModel.refreshDataFromNetwork()
     }
 
 }
