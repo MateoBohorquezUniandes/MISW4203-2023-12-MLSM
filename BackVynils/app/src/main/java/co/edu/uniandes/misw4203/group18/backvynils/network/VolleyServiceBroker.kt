@@ -11,7 +11,7 @@ import org.json.JSONObject
 
 class VolleyServiceBroker constructor(context: Context) {
     companion object {
-        const val BASE_URL = "https://vynils-back-heroku.herokuapp.com/"
+        const val BASE_URL = "https://backvynils-app.herokuapp.com/"
         private var instance: VolleyServiceBroker? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
