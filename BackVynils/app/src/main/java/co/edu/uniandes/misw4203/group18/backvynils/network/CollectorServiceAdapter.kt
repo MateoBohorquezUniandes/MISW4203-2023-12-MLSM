@@ -57,4 +57,24 @@ class CollectorServiceAdapter {
         list.add(4,Collector(4,"Mateo"))
         onComplete(list)
     }
+
+    fun getCollectorsEmpty(onComplete: (resp: List<Collector>) -> Unit) {
+        val list = mutableListOf<Collector>()
+        onComplete(list)
+    }
+
+    fun getCollectorsTen(onComplete: (resp: List<Collector>) -> Unit) {
+        val list = mutableListOf<Collector>()
+        list.add(0, Collector(0,"Collector 1"))
+        list.add(1, Collector(1,"Collector 2"))
+        list.add(2,Collector(2,"Collector 3"))
+        list.add(3,Collector(3,"Collector 4"))
+        list.add(4,Collector(4,"Collector 5"))
+        list.add(5, Collector(5,"Collector 6"))
+        list.add(6, Collector(6,"Collector 7"))
+        list.add(7,Collector(7,"Collector 8"))
+        list.add(8,Collector(8,"Collector 9"))
+        list.add(9,Collector(9,"Collector 10"))
+        onComplete(list)
+    }
 }
