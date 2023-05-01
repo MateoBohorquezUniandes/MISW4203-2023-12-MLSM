@@ -26,7 +26,9 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         refreshDataFromNetwork()
     }
 
+
     internal fun refreshDataFromNetwork() {
+
         albumsRepository.updateAlbumData(
             {
                 _albums.postValue(it)
@@ -38,6 +40,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             }
         )
     }
+
 
     fun postAlbum(album: Album) {
     albumsRepository.postAlbum(

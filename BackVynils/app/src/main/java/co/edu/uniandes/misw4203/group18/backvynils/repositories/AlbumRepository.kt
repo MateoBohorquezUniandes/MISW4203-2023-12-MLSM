@@ -16,5 +16,4 @@ class AlbumRepository (private val application: Application){
     ) {
         AlbumServiceAdapter.getInstance().postAlbum(application, album, onCompleted, onError)
     }
-
 }

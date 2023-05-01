@@ -72,5 +72,4 @@ class AlbumServiceAdapter constructor() {
                 { onError(it) }
             )
         }
-
 }
