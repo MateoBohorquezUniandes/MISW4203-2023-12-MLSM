@@ -58,7 +58,7 @@ class AlbumCreateFragment : Fragment() {
                 val recordLabel = recordLabelSpinner.selectedItem.toString()
 
 
-            if (name.isEmpty() || releaseDate.isEmpty() || genre.isEmpty() || recordLabel.isEmpty()) {
+            if (name.isEmpty() || description.isEmpty() || releaseDate.isEmpty() || genre.isEmpty() || recordLabel.isEmpty()|| cover.isEmpty()) {
                 Toast.makeText(requireContext(), "Please make sure all fields have been filled correctly", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
