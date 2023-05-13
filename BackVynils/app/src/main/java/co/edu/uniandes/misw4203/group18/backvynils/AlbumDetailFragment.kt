@@ -31,7 +31,8 @@ class AlbumDetailFragment : Fragment() {
 
         binding.addTrackButton.setOnClickListener {
             val navController = findNavController()
-            navController.navigate(R.id.action_albumDetailFragment_to_addTrackFragment)
+            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToAddTrackFragment(albumId)
+            navController.navigate(action)
         }
 
         arguments?.let { albumId = it.getInt(ALBUM_ID).toString() }
