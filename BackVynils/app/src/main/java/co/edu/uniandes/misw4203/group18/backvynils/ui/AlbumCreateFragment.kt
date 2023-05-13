@@ -54,7 +54,7 @@ class AlbumCreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(requireActivity().application)).get(AlbumViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(requireActivity().application))[AlbumViewModel::class.java]
 
         nameEditText = view.findViewById(R.id.titleEditText)
         coverEditText = view.findViewById(R.id.urlEditText)

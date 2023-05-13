@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
@@ -19,7 +19,7 @@
         android:text="@string/create_new_album"
         android:textColor="@color/TextGray"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/titleLabel"
@@ -34,12 +34,14 @@
         android:id="@+id/titleInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:hint="@string/album_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:padding="8dp"
             android:inputType="text"
             app:backgroundTint="#FFFFFF"/>
@@ -64,6 +66,7 @@
             android:id="@+id/urlEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:inputType="text"
             android:padding="8dp"
             app:backgroundTint="#FFFFFF"/>
@@ -71,7 +74,7 @@
 
     <TextView
         android:id="@+id/releaseDateLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/release_date"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -88,6 +91,7 @@
             android:id="@+id/releaseDateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:inputType="text"
             android:padding="8dp"
             app:backgroundTint="#FFFFFF"/>
@@ -95,7 +99,7 @@
 
     <TextView
         android:id="@+id/descriptionLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/description"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -112,6 +116,7 @@
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:inputType="text"
             android:padding="8dp"
             app:backgroundTint="#FFFFFF"/>
@@ -119,7 +124,7 @@
 
     <TextView
         android:id="@+id/genreLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/genre"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -130,13 +135,14 @@
         android:id="@+id/genreSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:entries="@array/genre_items"/>
 
     <TextView
         android:id="@+id/recordLabelLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/genre"
+        android:text="@string/record_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -145,7 +151,8 @@
         android:id="@+id/recordLabelSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/record_label_items" />
+        android:minHeight="48dp"
+        android:entries="@array/record_label_items"/>
 
     <Button
         android:id="@+id/createButton"

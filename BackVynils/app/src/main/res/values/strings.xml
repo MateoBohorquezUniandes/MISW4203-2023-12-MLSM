@@ -24,6 +24,7 @@
     <string name="album_description">Album description</string>
     <string name="genre">Genre</string>
     <string name="description">Description</string>
+    <string name="record_label">Record Label</string>
     <string-array name="genre_items">
         <item>Choose a genre</item>
         <item>Classical</item>
