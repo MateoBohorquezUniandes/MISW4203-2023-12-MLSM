@@ -7,7 +7,7 @@
     tools:context=".ui.AlbumCreateFragment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/addTrackName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -21,7 +21,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/titleLabel"
+        android:id="@+id/nameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -30,13 +30,13 @@
         android:text="Track"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/titleInputLayout"
+        android:id="@+id/nameInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Track Title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/titleEditText"
+            android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -45,22 +45,22 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/urlLabel"
+        android:id="@+id/durationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Length"
+        android:text="Duration"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/urlInputLayout"
+        android:id="@+id/durationInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="MM:SS">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/urlEditText"
+            android:id="@+id/durationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
