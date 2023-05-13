@@ -18,13 +18,13 @@ class AddTrackFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { albumId = it.getInt(AlbumDetailFragment.ALBUM_ID).toString() }
+        arguments?.let { albumId = it.getInt(ALBUM_ID).toString() }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        arguments?.let { albumId = it.getInt(AddTrackFragment.ALBUM_ID).toString() }
+        arguments?.let { albumId = it.getInt(ALBUM_ID).toString() }
 
         return inflater.inflate(R.layout.fragment_add_track, container, false)
     }
