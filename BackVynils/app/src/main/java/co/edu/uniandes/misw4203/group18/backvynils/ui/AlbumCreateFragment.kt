@@ -64,7 +64,7 @@ class AlbumCreateFragment : Fragment() {
             }
 
             if (name.length > 100) {
-                Toast.makeText(requireContext(), "Please enter a name with less than 100 characters", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter a title with less than 100 characters", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -108,7 +108,7 @@ class AlbumCreateFragment : Fragment() {
             )
 
             viewModel.postAlbum(album)
-            Toast.makeText(requireContext(), "Album created successfully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Album added successfully", Toast.LENGTH_SHORT).show()
 
             findNavController().popBackStack(R.id.albumListFragment, false)
 

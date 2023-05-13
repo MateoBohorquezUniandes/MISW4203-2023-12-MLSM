@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import co.edu.uniandes.misw4203.group18.backvynils.R
 import co.edu.uniandes.misw4203.group18.backvynils.databinding.FragmentAddTrackBinding
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import co.edu.uniandes.misw4203.group18.backvynils.viewmodels.AlbumViewModel
@@ -34,6 +36,22 @@ class AddTrackFragment : Fragment() {
                 val name = nameEditText.text.toString()
                 val duration = durationEditText.text.toString()
 
+                if (name.isEmpty() || duration.isEmpty()) {
+                    Toast.makeText(requireContext(), "Please make sure all fields have been filled correctly", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                if (name.length > 100) {
+                    Toast.makeText(requireContext(), "Please enter a track title with less than 100 characters", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                val durationFormat = Regex("""^([0-5][0-9]):([0-5][0-9])$""")
+                if (!durationFormat.matches(duration)) {
+                    Toast.makeText(requireContext(), "Please enter the duration in the format MM:SS", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
                 val track = Album.Track(
                     id = 0,
                     name = name,
@@ -41,7 +59,9 @@ class AddTrackFragment : Fragment() {
                 )
 
                 viewModel.addTrackToAlbum(albumId.toInt(), track)
-                Toast.makeText(requireContext(), "Track created successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Track added successfully", Toast.LENGTH_SHORT).show()
+
+                findNavController().popBackStack(R.id.albumDetailFragment, false)
 
             }
         }
