@@ -16,7 +16,7 @@
         android:layout_marginTop="15dp"
         android:paddingTop="20dp"
         android:layout_marginBottom="15dp"
-        android:text="Create New Album"
+        android:text="@string/create_new_album"
         android:textColor="@color/TextGray"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -28,13 +28,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"
-        android:text="Title"/>
+        android:text="@string/title"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Album title">
+        android:hint="@string/album_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleEditText"
@@ -49,7 +49,7 @@
         android:id="@+id/urlLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cover Image URL"
+        android:text="@string/cover_image_url"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -58,7 +58,7 @@
         android:id="@+id/urlInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="https://">
+        android:hint="@string/https">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/urlEditText"
@@ -73,7 +73,7 @@
         android:id="@+id/releaseDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Release Date"
+        android:text="@string/release_date"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -82,7 +82,7 @@
         android:id="@+id/releaseDateInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="YYYY-MM-DD">
+        android:hint="@string/yyyy_mm_dd">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/releaseDateEditText"
@@ -97,7 +97,7 @@
         android:id="@+id/descriptionLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/description"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -106,7 +106,7 @@
         android:id="@+id/descriptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Album description">
+        android:hint="@string/album_description">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionEditText"
@@ -121,7 +121,7 @@
         android:id="@+id/genreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genre"
+        android:text="@string/genre"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -136,7 +136,7 @@
         android:id="@+id/recordLabelLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genre"
+        android:text="@string/genre"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -151,7 +151,7 @@
         android:id="@+id/createButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREATE ALBUM"
+        android:text="@string/create_album"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:backgroundTint="@color/TextGray"
