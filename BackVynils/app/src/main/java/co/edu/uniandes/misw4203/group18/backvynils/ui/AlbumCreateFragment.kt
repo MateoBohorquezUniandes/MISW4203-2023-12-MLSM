@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import androidx.lifecycle.ViewModelProvider
 import co.edu.uniandes.misw4203.group18.backvynils.R
 import androidx.navigation.fragment.findNavController
+import co.edu.uniandes.misw4203.group18.backvynils.databinding.AlbumCreateFragmentBinding
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import co.edu.uniandes.misw4203.group18.backvynils.viewmodels.AlbumViewModel
 import java.text.ParseException
@@ -25,15 +23,8 @@ import java.text.ParseException
  * create an instance of this fragment.
  */
 class AlbumCreateFragment : Fragment() {
-    private lateinit var nameEditText: EditText
-    private lateinit var coverEditText: EditText
-    private lateinit var releaseDateEditText: EditText
-    private lateinit var descriptionEditText: EditText
-    private lateinit var genreSpinner: Spinner
-    private lateinit var recordLabelSpinner: Spinner
-    private lateinit var createButton: Button
-
     private lateinit var viewModel: AlbumViewModel
+    private lateinit var binding: AlbumCreateFragmentBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,34 +36,29 @@ class AlbumCreateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.album_create_fragment, container, false)
-
+    ): View {
+        binding = AlbumCreateFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(requireActivity().application)).get(AlbumViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(requireActivity().application))[AlbumViewModel::class.java]
 
-        nameEditText = view.findViewById(R.id.titleEditText)
-        coverEditText = view.findViewById(R.id.urlEditText)
-        releaseDateEditText = view.findViewById(R.id.releaseDateEditText)
-        descriptionEditText = view.findViewById(R.id.descriptionEditText)
-        genreSpinner = view.findViewById(R.id.genreSpinner)
-        recordLabelSpinner = view.findViewById(R.id.recordLabelSpinner)
-        createButton = view.findViewById(R.id.createButton)
+        with(binding) {
+            createButton.setOnClickListener {
+                val name = titleEditText.text.toString()
+                val cover = urlEditText.text.toString()
+                val releaseDate = releaseDateEditText.text.toString()
+                val description = descriptionEditText.text.toString()
+                val genre = genreSpinner.selectedItem.toString()
+                val recordLabel = recordLabelSpinner.selectedItem.toString()
 
-        createButton.setOnClickListener {
-            val name = nameEditText.text.toString()
-            val cover = coverEditText.text.toString()
-            val releaseDate = releaseDateEditText.text.toString()
-            val description = descriptionEditText.text.toString()
-            val genre = genreSpinner.selectedItem.toString()
-            val recordLabel = recordLabelSpinner.selectedItem.toString()
 
-            if (name.isEmpty() || releaseDate.isEmpty() || genre.isEmpty() || recordLabel.isEmpty()) {
+            if (name.isEmpty() || description.isEmpty() || releaseDate.isEmpty() || genre.isEmpty() || recordLabel.isEmpty()|| cover.isEmpty()) {
                 Toast.makeText(requireContext(), "Please make sure all fields have been filled correctly", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -126,7 +112,7 @@ class AlbumCreateFragment : Fragment() {
 
             findNavController().popBackStack(R.id.albumListFragment, false)
 
-        }
+        }}
     }
 
 
