@@ -26,6 +26,12 @@
     <string name="description">Description</string>
     <string name="record_label">Record Label</string>
     <string name="add_track">Add Track</string>
+    <string name="add_track_uppercase">ADD TRACK</string>
+    <string name="duration">Duration</string>
+    <string name="mm_ss">MM:SS</string>
+    <string name="track_title">Track Title</string>
+    <string name="track">Track</string>
+    <string name="add_track_to_album">Add Track to Album</string>
     <string-array name="genre_items">
         <item>Choose a genre</item>
         <item>Classical</item>
