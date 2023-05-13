@@ -1,6 +1,5 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -34,7 +33,6 @@
         android:id="@+id/titleInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:hint="@string/album_title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -43,8 +41,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:padding="8dp"
-            android:inputType="text"
-            app:backgroundTint="#FFFFFF"/>
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -68,8 +65,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="text"
-            android:padding="8dp"
-            app:backgroundTint="#FFFFFF"/>
+            android:padding="8dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -93,8 +89,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="text"
-            android:padding="8dp"
-            app:backgroundTint="#FFFFFF"/>
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -118,8 +113,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="text"
-            android:padding="8dp"
-            app:backgroundTint="#FFFFFF"/>
+            android:padding="8dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
