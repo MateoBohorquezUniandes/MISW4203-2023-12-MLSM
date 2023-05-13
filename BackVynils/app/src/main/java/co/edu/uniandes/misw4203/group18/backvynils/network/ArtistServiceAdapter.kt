@@ -2,8 +2,12 @@ package co.edu.uniandes.misw4203.group18.backvynils.network
 
 import android.content.Context
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
+import com.android.volley.Response
 import com.android.volley.VolleyError
 import org.json.JSONArray
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class ArtistServiceAdapter constructor() {
     companion object {
@@ -50,11 +54,7 @@ class ArtistServiceAdapter constructor() {
         )
     }
 
-    fun getMusicians(
-        context: Context,
-        onComplete: (resp: List<Artist>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
+    suspend fun getMusicians(context: Context) = suspendCoroutine<List<Artist>> { cont ->
         VolleyServiceBroker.getInstance(context).getRequest(
             musicianPath,
             { response ->
@@ -74,10 +74,10 @@ class ArtistServiceAdapter constructor() {
                         )
                     )
                 }
-
-                onComplete(list)
+                cont.resume(list)
             },
-            { onError(it) }
-        )
+            Response.ErrorListener {
+            cont.resumeWithException(it)
+            })
     }
 }
