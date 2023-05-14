@@ -1,14 +1,16 @@
 package co.edu.uniandes.misw4203.group18.backvynils.models
 
 import android.annotation.SuppressLint
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.text.SimpleDateFormat
-
+@Entity(tableName = "artists_table")
 data class Artist(
-     val artistId: Int,
+     @PrimaryKey val artistId: Int,
      val name: String,
-     val image: String,
+     val date: String,
      val description: String,
-     val date: String
+     val image: String
 ){
 
      companion object {
