@@ -9,8 +9,8 @@ import co.edu.uniandes.misw4203.group18.backvynils.repositories.AlbumRepository
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>()
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private var _eventNetworkError = MutableLiveData(false)
+    private var _isNetworkErrorShown = MutableLiveData(false)
 
     private val albumsRepository = AlbumRepository(application)
 
