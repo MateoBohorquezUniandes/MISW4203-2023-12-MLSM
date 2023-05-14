@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import co.edu.uniandes.misw4203.group18.backvynils.R
 import co.edu.uniandes.misw4203.group18.backvynils.databinding.FragmentAddTrackBinding
-import co.edu.uniandes.misw4203.group18.backvynils.models.Album
+import co.edu.uniandes.misw4203.group18.backvynils.models.Track
 import co.edu.uniandes.misw4203.group18.backvynils.viewmodels.AlbumViewModel
 
 class AddTrackFragment : Fragment() {
@@ -52,8 +52,8 @@ class AddTrackFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                val track = Album.Track(
-                    id = 0,
+                val track = Track(
+                    trackId = 0,
                     name = name,
                     duration = duration
                 )

@@ -2,10 +2,13 @@ package co.edu.uniandes.misw4203.group18.backvynils.network
 
 import android.content.Context
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
-import co.edu.uniandes.misw4203.group18.backvynils.models.Album.Track
+import co.edu.uniandes.misw4203.group18.backvynils.models.Track
 import com.android.volley.VolleyError
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class AlbumServiceAdapter constructor() {
     companion object {
@@ -20,11 +23,7 @@ class AlbumServiceAdapter constructor() {
 
     private val albumPath: String = "albums"
 
-    fun getAlbums(
-        context: Context,
-        onComplete: (resp: List<Album>) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
+    suspend fun getAlbums(context: Context) = suspendCoroutine<List<Album>> { cont ->
         VolleyServiceBroker.getInstance(context).getRequest(
             albumPath,
             { response ->
@@ -46,10 +45,9 @@ class AlbumServiceAdapter constructor() {
                         )
                     )
                 }
-
-                onComplete(list)
+                cont.resume(list)
             },
-            { onError(it) }
+            { cont.resumeWithException(it) }
         )
     }
     fun postAlbum(

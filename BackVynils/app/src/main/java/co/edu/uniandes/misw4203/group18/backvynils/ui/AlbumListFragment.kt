@@ -77,6 +77,7 @@ class AlbumListFragment : Fragment() {
                 it.apply {
                     viewModelAdapter!!.albums = this
                 }
+                viewModel.storeDataFromNetwork()
             }
         }
 
@@ -87,9 +88,9 @@ class AlbumListFragment : Fragment() {
         }
     }
 
-    private fun onNetworkError() {
+    private fun onNetworkError(message: String = "Connectivity Error") {
         if (!viewModel.isNetworkErrorShown.value!!) {
-            Toast.makeText(activity, "Connectivity Error", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
             viewModel.onNetworkErrorShown()
         }
     }

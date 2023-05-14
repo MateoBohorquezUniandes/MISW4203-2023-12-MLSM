@@ -1,10 +1,16 @@
 package co.edu.uniandes.misw4203.group18.backvynils.viewmodels
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
+import co.edu.uniandes.misw4203.group18.backvynils.database.VinylRoomDatabase
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
-import co.edu.uniandes.misw4203.group18.backvynils.models.Album.Track
+import co.edu.uniandes.misw4203.group18.backvynils.models.Track
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>()
@@ -12,7 +18,8 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     private var _eventNetworkError = MutableLiveData(false)
     private var _isNetworkErrorShown = MutableLiveData(false)
 
-    private val albumsRepository = AlbumRepository(application)
+    private val albumsRepository = AlbumRepository(application,
+        VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
 
     val albums: LiveData<List<Album>>
         get() = _albums
@@ -29,19 +36,35 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
 
 
     internal fun refreshDataFromNetwork() {
+        try {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    val albums = albumsRepository.updateAlbumData()
+                    _albums.postValue(albums)
+                }
+                withContext(Dispatchers.IO) {
+                    val connectivityErrors = albumsRepository.isNetworkConnectivityError()
+                    _eventNetworkError.postValue(connectivityErrors)
+                    _isNetworkErrorShown.postValue(connectivityErrors)
+                }
 
-        albumsRepository.updateAlbumData(
-            {
-                _albums.postValue(it)
-                _eventNetworkError.value = false
-                _isNetworkErrorShown.value = false
-            },
-            {
-                _eventNetworkError.value = true
             }
-        )
+        } catch (ex: Exception) {
+            _eventNetworkError.value = true
+        }
     }
 
+    internal fun storeDataFromNetwork() {
+        try {
+            if(!_albums.value.isNullOrEmpty()) {
+                viewModelScope.launch {
+                    albumsRepository.insertAlbums(_albums.value!!)
+                }
+            }
+        } catch (ex: Exception) {
+            Log.d("albumViewModel","Failed to store data locally: $ex")
+        }
+    }
 
     fun postAlbum(album: Album) {
     albumsRepository.postAlbum(
