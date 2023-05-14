@@ -2,19 +2,20 @@ package co.edu.uniandes.misw4203.group18.backvynils.models
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "albums_table")
 data class Album(
-    val albumId: Int,
+    @PrimaryKey val albumId: Int,
     val name: String,
     val cover: String,
     val releaseDate: String,
     val description: String,
     val genre: String,
-    val recordLabel: String,
-    val tracks: List<Track> = emptyList()
+    val recordLabel: String
 )
 {
-
     companion object {
         const val NAME_LIMIT: Int = 25
         const val NAME_CROP: Int = 23
@@ -23,11 +24,6 @@ data class Album(
         @SuppressLint("SimpleDateFormat")
         private val desiredFormat = SimpleDateFormat("yyyy-mm-dd")
     }
-    data class Track(
-        var id: Int = 0,
-        var name: String = "",
-        var duration: String = ""
-    )
 
     val title: String
         get() {
