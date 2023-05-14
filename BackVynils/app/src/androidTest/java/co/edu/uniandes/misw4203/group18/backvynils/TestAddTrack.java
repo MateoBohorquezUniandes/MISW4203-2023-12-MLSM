@@ -3,6 +3,7 @@ package co.edu.uniandes.misw4203.group18.backvynils;
 import android.os.Bundle;
 
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -33,11 +34,11 @@ public class TestAddTrack {
     public void setUp() {
         // Launch the AddTrackFragment
         Bundle bundle = new Bundle();
-        bundle.putString(AddTrackFragment.ALBUM_ID, "1");
+        bundle.putInt(AddTrackFragment.ALBUM_ID, 100);
         mActivityTestRule.getScenario().onActivity(activity -> {
             AddTrackFragment fragment = new AddTrackFragment();
             fragment.setArguments(bundle);
-            activity.getSupportFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
+            activity.getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
         });
     }
 
@@ -51,14 +52,15 @@ public class TestAddTrack {
         Espresso.onView(ViewMatchers.withId(R.id.createButton)).perform(click());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Verify toast message is displayed
-        Espresso.onView(withText("Track added successfully"))
-                .check(matches(isDisplayed()));
+        // Verify toast message
+        Espresso.onView(ViewMatchers.withText("Track added successfully"))
+                .inRoot(ToastMatcher.isToast())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
         // Verify return to AlbumDetail
         Espresso.onView(ViewMatchers.withId(R.id.albumDetailFragment))
@@ -75,14 +77,15 @@ public class TestAddTrack {
         Espresso.onView(ViewMatchers.withId(R.id.createButton)).perform(click());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Verify toast message is displayed
-        Espresso.onView(withText("Please enter a track title with less than 100 characters"))
-                .check(matches(isDisplayed()));
+        // Verify toast message
+        Espresso.onView(ViewMatchers.withText("Please enter a track title with less than 100 characters"))
+                .inRoot(ToastMatcher.isToast())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
@@ -95,16 +98,19 @@ public class TestAddTrack {
         Espresso.onView(ViewMatchers.withId(R.id.createButton)).perform(click());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Verify toast message is displayed
-        Espresso.onView(withText("Please enter the duration in the format MM:SS"))
-                .check(matches(isDisplayed()));
+        // Verify toast message
+        Espresso.onView(ViewMatchers.withText("Please enter the duration in the format MM:SS"))
+                .inRoot(ToastMatcher.isToast())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
     }
 
+    @Test
     public void testAddTrack_NoName() {
         // Type duration
         Espresso.onView(ViewMatchers.withId(R.id.durationEditText)).perform(typeText("03:30"), closeSoftKeyboard());
@@ -113,16 +119,18 @@ public class TestAddTrack {
         Espresso.onView(ViewMatchers.withId(R.id.createButton)).perform(click());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Verify toast message is displayed
-        Espresso.onView(withText("Please make sure all fields have been filled correctly"))
-                .check(matches(isDisplayed()));
+        // Verify toast message
+        Espresso.onView(ViewMatchers.withText("Please make sure all fields have been filled correctly"))
+                .inRoot(ToastMatcher.isToast())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+    @Test
     public void testAddTrack_NoDuration() {
         // Type track name
         Espresso.onView(ViewMatchers.withId(R.id.nameEditText)).perform(typeText("Test Track"), closeSoftKeyboard());
@@ -131,14 +139,16 @@ public class TestAddTrack {
         Espresso.onView(ViewMatchers.withId(R.id.createButton)).perform(click());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Verify toast message is displayed
-        Espresso.onView(withText("Please make sure all fields have been filled correctly"))
-                .check(matches(isDisplayed()));
+        // Verify toast message
+        Espresso.onView(ViewMatchers.withText("Please make sure all fields have been filled correctly"))
+                .inRoot(ToastMatcher.isToast())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
     }
 
 }
