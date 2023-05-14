@@ -5,6 +5,9 @@ import androidx.lifecycle.*
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album.Track
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>()
@@ -29,17 +32,17 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
 
 
     internal fun refreshDataFromNetwork() {
-
-        albumsRepository.updateAlbumData(
-            {
-                _albums.postValue(it)
+        try {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    _albums.postValue(albumsRepository.updateAlbumData())
+                }
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
-            },
-            {
-                _eventNetworkError.value = true
             }
-        )
+        } catch (ex: Exception) {
+            _eventNetworkError.value = true
+        }
     }
 
 
