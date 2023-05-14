@@ -10,9 +10,16 @@ import co.edu.uniandes.misw4203.group18.backvynils.database.dao.CollectorsDao
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 import co.edu.uniandes.misw4203.group18.backvynils.models.Collector
+import co.edu.uniandes.misw4203.group18.backvynils.models.Track
 
-@Database(entities = [Artist::class, Collector::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Album::class, Track::class, Artist::class, Collector::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class VinylRoomDatabase : RoomDatabase() {
+
+    abstract fun albumsDao(): AlbumsDao
     abstract fun artistsDao(): ArtistsDao
     abstract fun collectorsDao(): CollectorsDao
 
