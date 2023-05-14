@@ -7,8 +7,8 @@ import co.edu.uniandes.misw4203.group18.backvynils.network.AlbumServiceAdapter
 import com.android.volley.VolleyError
 
 class AlbumRepository (private val application: Application){
-    fun updateAlbumData(onCompleted: (List<Album>)->Unit, onError: (VolleyError)->Unit) {
-        AlbumServiceAdapter.getInstance().getAlbums(application, { onCompleted(it) }, onError)
+    suspend fun updateAlbumData(): List<Album> {
+        return AlbumServiceAdapter.getInstance().getAlbums(application)
     }
     fun postAlbum(
         album: Album,
