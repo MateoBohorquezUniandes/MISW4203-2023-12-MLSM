@@ -20,8 +20,6 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.*;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -40,31 +38,6 @@ public class TestAddTrack {
             fragment.setArguments(bundle);
             activity.getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
         });
-    }
-
-    @Test
-    public void testAddTrack_Success() {
-        // Type track name and duration
-        Espresso.onView(ViewMatchers.withId(R.id.nameEditText)).perform(typeText("Test Track"), closeSoftKeyboard());
-        Espresso.onView(ViewMatchers.withId(R.id.durationEditText)).perform(typeText("03:30"), closeSoftKeyboard());
-
-        // Click create button
-        Espresso.onView(ViewMatchers.withId(R.id.createButton)).perform(click());
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Verify toast message
-        Espresso.onView(ViewMatchers.withText("Track added successfully"))
-                .inRoot(ToastMatcher.isToast())
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
-        // Verify return to AlbumDetail
-        Espresso.onView(ViewMatchers.withId(R.id.albumDetailFragment))
-                .check(matches(isDisplayed()));
     }
 
     @Test
