@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,24 +51,25 @@ class AlbumListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        progressBar = view.findViewById<ProgressBar>(R.id.albumListProgressBar)
+        progressBar = view.findViewById(R.id.albumListProgressBar)
 
         recyclerView = binding.albumsRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "Cannot access viewModel before onActivityCreated()"
         }
 
         activity.actionBar?.title = getString(R.string.title_albums_list_fragment)
+        setupAlbumListViewModel(activity)
+    }
+
+    private fun setupAlbumListViewModel(activity: FragmentActivity) {
         viewModel = ViewModelProvider(
             this,
             AlbumViewModel.Factory(activity.application)
-        ).get(AlbumViewModel::class.java)
+        )[AlbumViewModel::class.java]
 
         viewModel.albums.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
