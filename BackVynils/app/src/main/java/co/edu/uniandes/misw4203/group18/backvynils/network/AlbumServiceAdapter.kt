@@ -2,6 +2,7 @@ package co.edu.uniandes.misw4203.group18.backvynils.network
 
 import android.content.Context
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
+import co.edu.uniandes.misw4203.group18.backvynils.models.Album.Track
 import com.android.volley.VolleyError
 import org.json.JSONArray
 import org.json.JSONObject
@@ -51,7 +52,7 @@ class AlbumServiceAdapter constructor() {
             { onError(it) }
         )
     }
-            fun postAlbum(
+    fun postAlbum(
             context: Context,
             album: Album,
             onComplete: () -> Unit,
@@ -72,4 +73,24 @@ class AlbumServiceAdapter constructor() {
                 { onError(it) }
             )
         }
+    fun postTrackToAlbum(
+        context: Context,
+        albumId: Int,
+        track: Track,
+        onComplete: () -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        val jsonObject = JSONObject()
+        jsonObject.put("name", track.name)
+        jsonObject.put("duration", track.duration)
+
+        val url = "$albumPath/$albumId/tracks"
+
+        VolleyServiceBroker.getInstance(context).postRequest(
+            url,
+            jsonObject,
+            { onComplete() },
+            { onError(it) }
+        )
+    }
 }

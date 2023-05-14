@@ -46,6 +46,9 @@
         <argument
             android:name="albumId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_addTrackFragment"
+            app:destination="@id/addTrackFragment" />
     </fragment>
 
     <fragment
@@ -71,5 +74,15 @@
         android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.AlbumCreateFragment"
         android:label="album_create_fragment"
         tools:layout="@layout/album_create_fragment" />
+
+    <fragment
+        android:id="@+id/addTrackFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.AddTrackFragment"
+        android:label="add_track_fragment"
+        tools:layout="@layout/fragment_add_track" >
+        <argument
+            android:name="albumId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
