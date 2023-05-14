@@ -2,7 +2,7 @@ package co.edu.uniandes.misw4203.group18.backvynils.network
 
 import android.content.Context
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
-import co.edu.uniandes.misw4203.group18.backvynils.models.Album.Track
+import co.edu.uniandes.misw4203.group18.backvynils.models.Track
 import com.android.volley.VolleyError
 import org.json.JSONArray
 import org.json.JSONObject
