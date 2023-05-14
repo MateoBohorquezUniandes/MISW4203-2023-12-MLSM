@@ -11,7 +11,7 @@ class ArtistRepository (private val application: Application){
         ArtistServiceAdapter.getInstance().getBands(application, { onCompleted(it) }, onError)
     }
 
-    fun updateMusicianData(onCompleted: (List<Artist>)->Unit, onError: (VolleyError)->Unit) {
-        ArtistServiceAdapter.getInstance().getMusicians(application, { onCompleted(it) }, onError)
+    suspend fun updateMusicianData() : List<Artist>{
+        return ArtistServiceAdapter.getInstance().getMusicians(application)
     }
 }

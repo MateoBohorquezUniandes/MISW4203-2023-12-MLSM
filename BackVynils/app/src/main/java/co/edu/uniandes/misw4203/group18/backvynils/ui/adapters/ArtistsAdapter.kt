@@ -1,5 +1,6 @@
 package co.edu.uniandes.misw4203.group18.backvynils.ui.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
