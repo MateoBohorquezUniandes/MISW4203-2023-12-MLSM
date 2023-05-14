@@ -3,6 +3,7 @@ package co.edu.uniandes.misw4203.group18.backvynils.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
+import co.edu.uniandes.misw4203.group18.backvynils.models.Album.Track
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.AlbumRepository
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
@@ -57,7 +58,25 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             _isNetworkErrorShown.value = true
         }
     )
-}
+    }
+
+    fun addTrackToAlbum(albumId: Int, track: Track) {
+        albumsRepository.postTrackToAlbum(
+            albumId,
+            track,
+            {
+                // The track was successfully added
+                refreshDataFromNetwork() // Refresh the list of albums
+                _eventNetworkError.value = false
+                _isNetworkErrorShown.value = false
+            },
+            {
+                // An error occurred while adding the track
+                _eventNetworkError.value = true
+                _isNetworkErrorShown.value = true
+            }
+        )
+    }
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

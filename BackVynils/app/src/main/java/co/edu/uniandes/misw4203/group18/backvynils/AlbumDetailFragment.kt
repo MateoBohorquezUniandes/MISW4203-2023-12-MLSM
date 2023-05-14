@@ -1,17 +1,19 @@
 package co.edu.uniandes.misw4203.group18.backvynils
-
+import androidx.navigation.fragment.findNavController
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import co.edu.uniandes.misw4203.group18.backvynils.databinding.FragmentAlbumDetailBinding
 
 /**
  * A simple [Fragment] subclass for rendering
  * and managing the detail of an album
  */
 class AlbumDetailFragment : Fragment() {
-
+    private var _binding: FragmentAlbumDetailBinding? = null
+    private val binding get() = _binding!!
     companion object {
         const val ALBUM_ID = "albumId"
     }
@@ -23,12 +25,20 @@ class AlbumDetailFragment : Fragment() {
         arguments?.let { albumId = it.getInt(ALBUM_ID).toString() }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        super.onCreate(savedInstanceState)
-        arguments?.let { albumId = it.getInt(ALBUM_ID).toString() }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
+        val rootView = binding.root
 
-        return inflater.inflate(R.layout.fragment_album_detail, container, false)
+        binding.addTrackButton.setOnClickListener {
+            val navController = findNavController()
+            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToAddTrackFragment(albumId)
+            navController.navigate(action)
+        }
+
+        arguments?.let { albumId = it.getInt(ALBUM_ID).toString() }
+        return rootView
     }
+
+
 
 }

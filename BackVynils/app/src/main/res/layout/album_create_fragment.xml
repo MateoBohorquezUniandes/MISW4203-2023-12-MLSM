@@ -1,6 +1,5 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,17 +8,17 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginTop="15dp"
         android:paddingTop="20dp"
         android:layout_marginBottom="15dp"
-        android:text="Create New Album"
+        android:text="@string/create_new_album"
         android:textColor="@color/TextGray"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/titleLabel"
@@ -28,28 +27,28 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"
-        android:text="Title"/>
+        android:text="@string/title"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Album title">
+        android:hint="@string/album_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:padding="8dp"
-            android:inputType="text"
-            app:backgroundTint="#FFFFFF"/>
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/urlLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cover Image URL"
+        android:text="@string/cover_image_url"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -58,22 +57,22 @@
         android:id="@+id/urlInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="https://">
+        android:hint="@string/https">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/urlEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:inputType="text"
-            android:padding="8dp"
-            app:backgroundTint="#FFFFFF"/>
+            android:padding="8dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/releaseDateLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Release Date"
+        android:text="@string/release_date"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -82,22 +81,22 @@
         android:id="@+id/releaseDateInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="YYYY-MM-DD">
+        android:hint="@string/yyyy_mm_dd">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/releaseDateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:inputType="text"
-            android:padding="8dp"
-            app:backgroundTint="#FFFFFF"/>
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/descriptionLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/description"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -106,22 +105,22 @@
         android:id="@+id/descriptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Album description">
+        android:hint="@string/album_description">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:inputType="text"
-            android:padding="8dp"
-            app:backgroundTint="#FFFFFF"/>
+            android:padding="8dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/genreLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Genre"
+        android:text="@string/genre"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -130,13 +129,14 @@
         android:id="@+id/genreSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:entries="@array/genre_items"/>
 
     <TextView
         android:id="@+id/recordLabelLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Genre"
+        android:text="@string/record_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/TextGray"
         android:padding="8dp"/>
@@ -145,13 +145,14 @@
         android:id="@+id/recordLabelSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/record_label_items" />
+        android:minHeight="48dp"
+        android:entries="@array/record_label_items"/>
 
     <Button
         android:id="@+id/createButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREATE ALBUM"
+        android:text="@string/create_album"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:backgroundTint="@color/TextGray"
