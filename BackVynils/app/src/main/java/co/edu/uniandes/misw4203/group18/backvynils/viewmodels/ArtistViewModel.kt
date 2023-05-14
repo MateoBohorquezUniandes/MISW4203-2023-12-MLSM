@@ -2,6 +2,7 @@ package co.edu.uniandes.misw4203.group18.backvynils.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
+import co.edu.uniandes.misw4203.group18.backvynils.database.VinylRoomDatabase
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.ArtistRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
     private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
 
-    private val artistsRepository = ArtistRepository(application)
+    private val artistsRepository = ArtistRepository(application,
+        VinylRoomDatabase.getDatabase(application.applicationContext).artistsDao())
 
     val musicians: LiveData<List<Artist>>
         get() = _musicians
@@ -29,7 +31,7 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+    internal fun refreshDataFromNetwork() {
        try {
            viewModelScope.launch (Dispatchers.Default){
                withContext(Dispatchers.IO){
