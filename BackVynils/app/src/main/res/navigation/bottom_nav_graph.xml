@@ -9,15 +9,80 @@
         android:id="@+id/albumListFragment"
         android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.AlbumListFragment"
         android:label="fragment_album_list"
-        tools:layout="@layout/fragment_album_list" />
+        tools:layout="@layout/fragment_album_list" >
+        <action
+            android:id="@+id/action_albumListFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+
+        <action
+            android:id="@+id/action_albumListFragment_to_albumCreateFragment"
+            app:destination="@id/albumCreateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/artistListFragment"
         android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.ArtistListFragment"
         android:label="fragment_artist_list"
-        tools:layout="@layout/fragment_artist_list" />
+        tools:layout="@layout/fragment_artist_list" >
+    <action
+        android:id="@+id/action_artistListFragment_to_artistDetailFragment"
+        app:destination="@id/artistDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/collectorListFragment"
         android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.CollectorListFragment"
         android:label="fragment_collector_list"
-        tools:layout="@layout/fragment_collector_list" />
+
+        tools:layout="@layout/fragment_collector_list" >
+        <action
+            android:id="@+id/action_collectorListFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.AlbumDetailFragment"
+        android:label="fragment_album_detail"
+        tools:layout="@layout/fragment_album_detail" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_addTrackFragment"
+            app:destination="@id/addTrackFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/collectorDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.CollectorDetail"
+        android:label="fragment_collector_detail"
+        tools:layout="@layout/fragment_collector_detail">
+        <argument
+            android:name="collectorId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ArtistDetailFragment"
+        android:label="fragment_artist_detail"
+        tools:layout="@layout/fragment_artist_detail" >
+        <argument
+            android:name="artistId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumCreateFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.AlbumCreateFragment"
+        android:label="album_create_fragment"
+        tools:layout="@layout/album_create_fragment" />
+
+    <fragment
+        android:id="@+id/addTrackFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.AddTrackFragment"
+        android:label="add_track_fragment"
+        tools:layout="@layout/fragment_add_track" >
+        <argument
+            android:name="albumId"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
