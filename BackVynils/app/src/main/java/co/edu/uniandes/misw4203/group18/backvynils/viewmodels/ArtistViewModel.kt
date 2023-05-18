@@ -18,7 +18,7 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
     private val artistsRepository = ArtistRepository(application,
         VinylRoomDatabase.getDatabase(application.applicationContext).artistsDao())
 
-    private val _selectedArtist = MutableLiveData<Artist>()
+     val selectedArtist = MutableLiveData<Artist>()
 
     val musicians: LiveData<List<Artist>>
         get() = _musicians
@@ -29,8 +29,6 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
-    val getSelectedArtist: LiveData<Artist>
-        get() = _selectedArtist
 
     init {
         refreshDataFromNetwork()
@@ -54,15 +52,5 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
-    }
-
-    class Factory(val app: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(ArtistViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return ArtistViewModel(app) as T
-            }
-            throw IllegalArgumentException("Unable to construct ViewModel")
-        }
     }
 }

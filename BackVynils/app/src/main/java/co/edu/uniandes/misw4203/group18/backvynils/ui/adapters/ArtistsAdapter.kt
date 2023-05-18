@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.misw4203.group18.backvynils.R
 import co.edu.uniandes.misw4203.group18.backvynils.databinding.ArtistItemBinding
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
-import co.edu.uniandes.misw4203.group18.backvynils.ui.ArtistListFragmentDirections
 
 
 class ArtistsAdapter(val itemListener: ArtistItemListener) : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>() {
@@ -42,11 +40,11 @@ class ArtistsAdapter(val itemListener: ArtistItemListener) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
         val artist = artists[position]
         holder.viewDataBinding.also { it.artist = artist }
-        holder.viewDataBinding.root.setOnClickListener {
+        /*holder.viewDataBinding.root.setOnClickListener {
             val destination =
                 ArtistListFragmentDirections.actionArtistListFragmentToArtistDetailFragment(artists[position].artistId)
             holder.viewDataBinding.root.findNavController().navigate(destination)
-        }
+        }*/
         holder.itemView.setOnClickListener{
             itemListener.onArtistItemCLick(artist)
         }

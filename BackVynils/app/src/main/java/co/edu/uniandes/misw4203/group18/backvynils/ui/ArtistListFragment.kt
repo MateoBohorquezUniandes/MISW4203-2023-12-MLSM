@@ -1,7 +1,6 @@
 package co.edu.uniandes.misw4203.group18.backvynils.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.uniandes.misw4203.group18.backvynils.BuildConfig
 import co.edu.uniandes.misw4203.group18.backvynils.R
 import co.edu.uniandes.misw4203.group18.backvynils.databinding.FragmentArtistListBinding
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
@@ -80,16 +78,13 @@ class ArtistListFragment : Fragment(),
         recyclerView = binding.artistsRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+
         val activity = requireNotNull(this.activity) {
             "Cannot access viewModel before onActivityCreated()"
         }
 
         activity.actionBar?.title = getString(R.string.title_artists_list_fragment)
-
     }
 
     private fun onNetworkError() {
@@ -110,8 +105,7 @@ class ArtistListFragment : Fragment(),
     }
 
     override fun onArtistItemCLick(artist: Artist) {
-        if(BuildConfig.DEBUG)
-            Log.i("Artist" ,"Selected artist: ${artist.name}")
         navController.navigate(R.id.action_artistListFragment_to_artistDetailFragment)
+        viewModel.selectedArtist.value = artist
     }
 }
