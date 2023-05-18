@@ -18,6 +18,8 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
     private val artistsRepository = ArtistRepository(application,
         VinylRoomDatabase.getDatabase(application.applicationContext).artistsDao())
 
+    private val _selectedArtist = MutableLiveData<Artist>()
+
     val musicians: LiveData<List<Artist>>
         get() = _musicians
 
@@ -27,6 +29,9 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
+    val getSelectedArtist: LiveData<Artist>
+        get() = _selectedArtist
+
     init {
         refreshDataFromNetwork()
     }
@@ -35,7 +40,7 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
        try {
            viewModelScope.launch (Dispatchers.Default){
                withContext(Dispatchers.IO){
-                   var data = artistsRepository.updateMusicianData()
+                   val data = artistsRepository.updateMusicianData()
                    _musicians.postValue(data)
                }
                _eventNetworkError.postValue(false)

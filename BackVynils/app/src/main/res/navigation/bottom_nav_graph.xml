@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/artistDetailFragment"
-        android:name="co.edu.uniandes.misw4203.group18.backvynils.ArtistDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.detail.ArtistDetailFragment"
         android:label="fragment_artist_detail"
         tools:layout="@layout/fragment_artist_detail" >
         <argument
