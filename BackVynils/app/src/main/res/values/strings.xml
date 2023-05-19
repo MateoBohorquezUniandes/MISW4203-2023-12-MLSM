@@ -47,5 +47,5 @@
         <item>Elektra</item>
         <item>Fania Records</item>
     </string-array>
-
+    <string name="artist_detail_birthday">Birthday</string>
 </resources>

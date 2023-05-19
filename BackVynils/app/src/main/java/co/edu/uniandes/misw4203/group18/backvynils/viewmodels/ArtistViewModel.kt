@@ -1,7 +1,9 @@
 package co.edu.uniandes.misw4203.group18.backvynils.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
+import co.edu.uniandes.misw4203.group18.backvynils.BuildConfig
 import co.edu.uniandes.misw4203.group18.backvynils.database.VinylRoomDatabase
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.ArtistRepository
@@ -17,6 +19,8 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
 
     private val artistsRepository = ArtistRepository(application,
         VinylRoomDatabase.getDatabase(application.applicationContext).artistsDao())
+
+    val selectedArtist = MutableLiveData<Artist>()
 
     val musicians: LiveData<List<Artist>>
         get() = _musicians
@@ -35,7 +39,7 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
        try {
            viewModelScope.launch (Dispatchers.Default){
                withContext(Dispatchers.IO){
-                   var data = artistsRepository.updateMusicianData()
+                   val data = artistsRepository.updateMusicianData()
                    _musicians.postValue(data)
                }
                _eventNetworkError.postValue(false)
@@ -45,6 +49,19 @@ class ArtistViewModel(application: Application) :  AndroidViewModel(application)
        catch (e:Exception){
            _eventNetworkError.value = true
        }
+    }
+
+    internal fun storeDataFromNetwork() {
+        try {
+            if(!_musicians.value.isNullOrEmpty()) {
+                viewModelScope.launch {
+                    artistsRepository.insertArtists(_musicians.value!!)
+                }
+            }
+        } catch (ex: Exception) {
+            if(BuildConfig.DEBUG)
+                Log.d("artistViewModel","Failed to store data locally: $ex")
+        }
     }
 
     fun onNetworkErrorShown() {
