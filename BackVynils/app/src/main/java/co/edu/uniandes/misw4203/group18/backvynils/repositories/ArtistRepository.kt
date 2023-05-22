@@ -20,4 +20,10 @@ class ArtistRepository (private val application: Application, private val artist
             } else ArtistServiceAdapter.getInstance().getMusicians(application)
         } else cached
     }
+
+    suspend fun insertArtists(artists: List<Artist>) {
+        for (artist in artists) {
+            artistsDao.insert(artist)
+        }
+    }
 }
