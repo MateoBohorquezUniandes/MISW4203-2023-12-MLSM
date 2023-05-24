@@ -62,6 +62,7 @@ class AlbumRepository(private val application: Application, private val albumsDa
         AlbumServiceAdapter.getInstance().postAlbum(application, album, onCompleted, onError)
     }
 
+
     fun postTrackToAlbum(
         albumId: Int,
         track: Track,
