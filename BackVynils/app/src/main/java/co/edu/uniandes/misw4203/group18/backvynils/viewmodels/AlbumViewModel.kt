@@ -67,38 +67,46 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     }
 
     fun postAlbum(album: Album) {
-    albumsRepository.postAlbum(
-        album,
-        {
-            // The album was successfully posted
-            refreshDataFromNetwork() // Refresh the list of albums
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },
-        {
-            // An error occurred while posting the album
-            _eventNetworkError.value = true
-            _isNetworkErrorShown.value = true
-        }
-    )
-    }
-
-    fun addTrackToAlbum(albumId: Int, track: Track) {
-        albumsRepository.postTrackToAlbum(
-            albumId,
-            track,
-            {
-                // The track was successfully added
-                refreshDataFromNetwork() // Refresh the list of albums
-                _eventNetworkError.value = false
-                _isNetworkErrorShown.value = false
-            },
-            {
-                // An error occurred while adding the track
+        viewModelScope.launch {
+            try {
+                albumsRepository.postAlbum(album,
+                    {
+                        refreshDataFromNetwork()
+                        _eventNetworkError.value = false
+                        _isNetworkErrorShown.value = false
+                    },
+                    { error ->
+                        _eventNetworkError.value = true
+                        _isNetworkErrorShown.value = true
+                    }
+                )
+            } catch (ex: Exception) {
                 _eventNetworkError.value = true
                 _isNetworkErrorShown.value = true
             }
-        )
+        }
+    }
+
+
+    fun addTrackToAlbum(albumId: Int, track: Track) {
+        viewModelScope.launch {
+            try {
+                albumsRepository.postTrackToAlbum(albumId, track,
+                    {
+                        refreshDataFromNetwork()
+                        _eventNetworkError.value = false
+                        _isNetworkErrorShown.value = false
+                    },
+                    { error ->
+                        _eventNetworkError.value = true
+                        _isNetworkErrorShown.value = true
+                    }
+                )
+            } catch (ex: Exception) {
+                _eventNetworkError.value = true
+                _isNetworkErrorShown.value = true
+            }
+        }
     }
 
     fun onNetworkErrorShown() {
