@@ -54,6 +54,7 @@ class AddTrackFragment : Fragment() {
 
                 val track = Track(
                     trackId = 0,
+                    fkAlbumId = albumId.toInt(),
                     name = name,
                     duration = duration
                 )
