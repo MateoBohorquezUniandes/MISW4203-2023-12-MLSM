@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, imageUrl: String) {
+fun loadImage(view: ImageView, imageUrl: String?) {
     Glide.with(view.context)
         .load(imageUrl)
         .into(view)

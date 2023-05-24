@@ -14,15 +14,16 @@ data class Album(
     val description: String,
     val genre: String,
     val recordLabel: String
-)
-{
+) {
     companion object {
         const val NAME_LIMIT: Int = 25
         const val NAME_CROP: Int = 23
+
         @SuppressLint("SimpleDateFormat")
         private val zonedFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
         @SuppressLint("SimpleDateFormat")
-        private val desiredFormat = SimpleDateFormat("yyyy-mm-dd")
+        private val desiredFormat = SimpleDateFormat("yyyy-MM-dd")
     }
 
     val title: String
