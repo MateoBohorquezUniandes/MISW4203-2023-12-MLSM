@@ -10,4 +10,7 @@ class CollectorRepository(private val application: Application) {
         CollectorServiceAdapter.getInstance().getCollectors(application,{onCompleted(it)}, onError)
         //CollectorServiceAdapter.getInstance().getCollectorsOffline({onCompleted(it)})
     }
+    fun updateCollectorDetailData(id:String,onCompleted: (Collector) -> Unit, onError: (VolleyError) -> Unit){
+        CollectorServiceAdapter.getInstance().getSingleCollector(id,application,{onCompleted(it)}, onError)
+    }
 }

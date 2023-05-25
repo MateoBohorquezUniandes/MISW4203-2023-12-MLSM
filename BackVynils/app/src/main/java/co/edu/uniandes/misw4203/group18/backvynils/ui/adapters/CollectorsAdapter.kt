@@ -44,5 +44,11 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             holder.viewDataBinding.root.findNavController().navigate(destination)
         }
     }
+    fun extractSingleCollector(id: String): Collector?{
+        val collect: Collector? = collectors.find {
+            col -> id.toInt().equals(col.collectorId)
+        }
+        return collect
+    }
 
 }
