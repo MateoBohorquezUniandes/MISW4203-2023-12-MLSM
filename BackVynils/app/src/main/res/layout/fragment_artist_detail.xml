@@ -59,7 +59,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            tools:src="@drawable/ic_artists_menu_item_24" />
+            tools:src="@drawable/ic_artists_menu_item_24"
+            android:contentDescription="@string/artist_detail_cover_image" />
 
         <TextView
             android:id="@+id/descriptionText"
