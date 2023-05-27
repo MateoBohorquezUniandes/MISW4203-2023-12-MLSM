@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import co.edu.uniandes.misw4203.group18.backvynils.database.dao.CollectorsDao
 import co.edu.uniandes.misw4203.group18.backvynils.models.Collector
 import co.edu.uniandes.misw4203.group18.backvynils.network.CollectorServiceAdapter
-import com.android.volley.VolleyError
 class CollectorRepository(private val application: Application, private val collectorsDao: CollectorsDao) {
 
     /*fun updateCollectorData(onCompleted: (List<Collector>)->Unit, onError: (VolleyError)->Unit) {

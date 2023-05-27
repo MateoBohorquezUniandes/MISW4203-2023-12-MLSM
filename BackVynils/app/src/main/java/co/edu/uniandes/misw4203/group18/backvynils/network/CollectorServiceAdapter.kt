@@ -1,12 +1,8 @@
 package co.edu.uniandes.misw4203.group18.backvynils.network
 
-import android.app.Application
 import android.content.Context
-import co.edu.uniandes.misw4203.group18.backvynils.models.Album
-import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 import co.edu.uniandes.misw4203.group18.backvynils.models.Collector
 import co.edu.uniandes.misw4203.group18.backvynils.models.Comments
-import com.android.volley.VolleyError
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -90,10 +86,10 @@ class CollectorServiceAdapter {
         id: String,
         context: Context) = suspendCoroutine<Collector> { cont ->
         VolleyServiceBroker.getInstance(context).getRequest(
-            collectorPath + "/" + id,
+            "$collectorPath/$id",
             {response ->
                 val resp = JSONObject(response)
-                val coll: Collector = Collector(
+                val coll = Collector(
                     resp.getInt("id"),
                     resp.getString("name"),
                     resp.getString("telephone"),
@@ -119,17 +115,20 @@ class CollectorServiceAdapter {
         return commentJson.getInt("id")
     }
 
-    fun extractComments(resp:JSONObject): Comments {
+    fun extractComments(resp: JSONObject): Comments {
         val array: JSONArray = resp.getJSONArray("comments")
         val commentJson: JSONObject = array.getJSONObject(0)
-        val commentReturn: Comments = Comments(commentJson.getInt("id"),commentJson.getString("description"),commentJson.getInt("rating"))
-        return commentReturn
+        return Comments(
+            commentJson.getInt("id"),
+            commentJson.getString("description"),
+            commentJson.getInt("rating")
+        )
     }
     suspend fun getCommentCollector(
         id: String,
         context: Context) = suspendCoroutine<Comments> { cont ->
         VolleyServiceBroker.getInstance(context).getRequest(
-            collectorPath + "/" + id,
+            "$collectorPath/$id",
             {response ->
                 val resp = JSONObject(response)
                 val comment: Comments = extractComments(resp)

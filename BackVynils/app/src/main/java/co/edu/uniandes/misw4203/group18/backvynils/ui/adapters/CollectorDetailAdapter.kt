@@ -4,14 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.misw4203.group18.backvynils.R
 import co.edu.uniandes.misw4203.group18.backvynils.databinding.ArtistItemBinding
-import co.edu.uniandes.misw4203.group18.backvynils.databinding.CollectorItemBinding
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
-import co.edu.uniandes.misw4203.group18.backvynils.models.Collector
-import co.edu.uniandes.misw4203.group18.backvynils.ui.CollectorListFragmentDirections
 
 class CollectorDetailAdapter: RecyclerView.Adapter<CollectorDetailAdapter.CollectorViewHolder>(){
 

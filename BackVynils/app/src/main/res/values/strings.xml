@@ -47,5 +47,7 @@
         <item>Elektra</item>
         <item>Fania Records</item>
     </string-array>
+    <string name="last_comment">Last Comment:</string>
+    <string name="favorite_performer">Favorite Performance:</string>
 
 </resources>

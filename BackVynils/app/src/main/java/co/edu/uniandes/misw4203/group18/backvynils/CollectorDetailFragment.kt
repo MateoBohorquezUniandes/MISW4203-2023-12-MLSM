@@ -1,11 +1,11 @@
 package co.edu.uniandes.misw4203.group18.backvynils
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +13,6 @@ import co.edu.uniandes.misw4203.group18.backvynils.databinding.FragmentCollector
 import co.edu.uniandes.misw4203.group18.backvynils.models.Collector
 import co.edu.uniandes.misw4203.group18.backvynils.models.Comments
 import co.edu.uniandes.misw4203.group18.backvynils.ui.adapters.CollectorDetailAdapter
-import co.edu.uniandes.misw4203.group18.backvynils.ui.adapters.CollectorsAdapter
 import co.edu.uniandes.misw4203.group18.backvynils.viewmodels.CollectorDetailViewModel
 
 class CollectorDetail : Fragment() {
@@ -43,7 +42,7 @@ class CollectorDetail : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreate(savedInstanceState)
         arguments?.let { collectorId = it.getInt(COLLECTOR_ID).toString() }
         viewModelAdapter = CollectorDetailAdapter()
