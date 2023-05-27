@@ -11,6 +11,9 @@ interface ArtistsDao {
     @Query("SELECT * FROM artists_table")
     fun getArtists():List<Artist>
 
+    @Query("SELECT * FROM artists_table WHERE artistId = :id")
+    fun getSingleArtist(id:Int): Artist
+  
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(artist: Artist)
 }

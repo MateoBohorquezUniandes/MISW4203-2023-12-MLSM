@@ -24,6 +24,11 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             field = value
             notifyDataSetChanged()
         }
+    var collector: Collector = Collector(0,"","","",0,0)
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectorViewHolder {
         val withCollectorDataBinding: CollectorItemBinding = DataBindingUtil.inflate(
@@ -43,6 +48,12 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
                 CollectorListFragmentDirections.actionCollectorListFragmentToCollectorDetailFragment(collectors[position].collectorId)
             holder.viewDataBinding.root.findNavController().navigate(destination)
         }
+    }
+    fun extractSingleCollector(id: String): Collector?{
+        val collect: Collector? = collectors.find {
+            col -> id.toInt().equals(col.collectorId)
+        }
+        return collect
     }
 
 }

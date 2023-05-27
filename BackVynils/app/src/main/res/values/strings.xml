@@ -48,6 +48,8 @@
         <item>Elektra</item>
         <item>Fania Records</item>
     </string-array>
+    <string name="last_comment">Last Comment:</string>
+    <string name="favorite_performer">Favorite Performance:</string>
     <string name="artist_detail_birthday">Birthday</string>
     <string name="album_detail_divider">|</string>
     <string name="artist_detail_cover_image">Artists’ cover image</string>

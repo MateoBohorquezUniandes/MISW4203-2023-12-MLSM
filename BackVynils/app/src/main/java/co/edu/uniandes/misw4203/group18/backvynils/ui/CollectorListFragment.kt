@@ -26,7 +26,7 @@ class CollectorListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewModelAdapter = CollectorsAdapter()
         _binding = FragmentCollectorListBinding.inflate(inflater, container, false)
         return binding.root
