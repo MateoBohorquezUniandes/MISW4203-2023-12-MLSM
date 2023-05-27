@@ -5,6 +5,7 @@ import co.edu.uniandes.misw4203.group18.backvynils.database.VinylRoomDatabase
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 import co.edu.uniandes.misw4203.group18.backvynils.models.Collector
 import co.edu.uniandes.misw4203.group18.backvynils.models.Comments
+import co.edu.uniandes.misw4203.group18.backvynils.repositories.ArtistRepository
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.CollectorRepository
 import co.edu.uniandes.misw4203.group18.backvynils.repositories.CommentsRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,7 @@ class CollectorDetailViewModel(application: Application, id: Int) : AndroidViewM
 
     private val collectorRepository = CollectorRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
     private val commentsRepository = CommentsRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).commentsDao())
+    private val artistRepository = ArtistRepository(application,VinylRoomDatabase.getDatabase(application.applicationContext).artistsDao())
 
 
     val collectorId: Int = id
@@ -42,8 +44,7 @@ class CollectorDetailViewModel(application: Application, id: Int) : AndroidViewM
                     var data = collectorRepository.refreshCollectorDetailData(collectorId)
                     _collector.postValue(data)
                     val data2 = mutableListOf<Artist>()
-                    data2.add(0,Artist(243,"Mateo","1998-07-26T00:00:00.000Z","El puto amo","Imagen"))
-                    //data2.add(artistRepository.metodounrepo(data.favoritePerformers))
+                    data2.add(artistRepository.getAnArtist(data.favoritePerformers))
                     _artist.postValue(data2)
                     var data3 = commentsRepository.getCommentCollector(data.comments,collectorId)
                     _comment.postValue(data3)

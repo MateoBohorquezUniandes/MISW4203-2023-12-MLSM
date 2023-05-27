@@ -8,4 +8,7 @@ import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 interface ArtistsDao {
     @Query("SELECT * FROM artists_table")
     fun getArtists():List<Artist>
+
+    @Query("SELECT * FROM artists_table WHERE artistId = :id")
+    fun getSingleArtist(id:Int): Artist
 }
