@@ -12,13 +12,20 @@ class ArtistRepository (private val application: Application, private val artist
 
     suspend fun updateMusicianData() : List<Artist>{
         val cached = artistsDao.getArtists()
-        return if(cached.isNullOrEmpty()){
-            val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
+        return cached.ifEmpty {
+            val cm =
+                application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            if (cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE) {
                 emptyList()
 
             } else ArtistServiceAdapter.getInstance().getMusicians(application)
-        } else cached
+        }
+    }
+
+    suspend fun insertArtists(artists: List<Artist>) {
+        for (artist in artists) {
+            artistsDao.insert(artist)
+        }
     }
 
     suspend fun getAnArtist(id: Int) : Artist {

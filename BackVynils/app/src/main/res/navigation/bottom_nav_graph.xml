@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/albumDetailFragment"
-        android:name="co.edu.uniandes.misw4203.group18.backvynils.AlbumDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.detail.AlbumDetailFragment"
         android:label="fragment_album_detail"
         tools:layout="@layout/fragment_album_detail" >
         <argument
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/artistDetailFragment"
-        android:name="co.edu.uniandes.misw4203.group18.backvynils.ArtistDetailFragment"
+        android:name="co.edu.uniandes.misw4203.group18.backvynils.ui.detail.ArtistDetailFragment"
         android:label="fragment_artist_detail"
         tools:layout="@layout/fragment_artist_detail" >
         <argument

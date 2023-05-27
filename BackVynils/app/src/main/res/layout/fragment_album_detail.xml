@@ -1,17 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/addTrackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#77D353"
-        android:textColor="#343F4B"
-        android:text="@string/add_track" />
+    <data>
 
+        <variable
+            name="albumWithTracks"
+            type="co.edu.uniandes.misw4203.group18.backvynils.models.AlbumWithTracks" />
+    </data>
 
-</LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@{albumWithTracks.album.name}"
+                app:imageUrl="@{albumWithTracks.album.cover}"
+                app:layout_constraintDimensionRatio="1:1"
+                app:srcCompat="@drawable/ic_albums_menu_item_24" />
+
+            <TextView
+                android:id="@+id/albumDetailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@{albumWithTracks.album.title}"
+                android:textAlignment="gravity"
+                android:textColor="@color/title_primary"
+                android:textDirection="locale"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/albumDetailGenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@{albumWithTracks.album.genre}"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/title_secondary"
+                    android:textDirection="locale"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/albumDetailDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/album_detail_divider"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/title_secondary"
+                    android:textDirection="locale"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/albumDetailDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{albumWithTracks.album.parsedReleaseDate}"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/title_secondary"
+                    android:textDirection="locale"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/albumDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@{albumWithTracks.album.description}"
+                android:textAlignment="gravity"
+                android:textColor="@color/album_detail_description"
+                android:textDirection="locale" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/albumDetailTracksSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@{albumWithTracks.numberOfTracks}"
+                    android:textAlignment="center"
+                    android:textColor="@color/title_primary"
+                    android:textDirection="locale"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/addTrackButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:backgroundTint="#77D353"
+                    android:text="@string/add_track"
+                    android:textColor="#343F4B" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

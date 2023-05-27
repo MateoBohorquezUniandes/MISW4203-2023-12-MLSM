@@ -3,27 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="album" type="co.edu.uniandes.misw4203.group18.backvynils.models.Album"/>
+
+        <variable
+            name="album"
+            type="co.edu.uniandes.misw4203.group18.backvynils.models.Album" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            app:cardElevation="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/stroke_color"
-            app:strokeWidth="1dp">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:cardElevation="2dp"
+        app:strokeColor="@color/stroke_color"
+        app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -33,6 +29,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@{album.title}"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/list_item_title_primary"
+                    android:textDirection="locale"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -43,19 +42,25 @@
 
                     <TextView
                         android:id="@+id/albumDate"
-                        android:text="@{album.genre}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp" />
+                        android:layout_marginStart="10dp"
+                        android:text="@{album.genre}"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/list_item_title_secondary"
+                        android:textDirection="locale" />
+
                     <TextView
                         android:id="@+id/albumGenre"
-                        android:text="@{album.parsedReleaseDate}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:text="@{album.parsedReleaseDate}"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/list_item_title_secondary"
+                        android:textDirection="locale" />
                 </LinearLayout>
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

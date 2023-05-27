@@ -3,8 +3,10 @@ package co.edu.uniandes.misw4203.group18.backvynils.repositories
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import co.edu.uniandes.misw4203.group18.backvynils.database.dao.AlbumsDao
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
+import co.edu.uniandes.misw4203.group18.backvynils.models.AlbumWithTracks
 import co.edu.uniandes.misw4203.group18.backvynils.models.Track
 import co.edu.uniandes.misw4203.group18.backvynils.network.AlbumServiceAdapter
 import com.android.volley.VolleyError
@@ -22,9 +24,27 @@ class AlbumRepository(private val application: Application, private val albumsDa
         return AlbumServiceAdapter.getInstance().getAlbums(application)
     }
 
+    suspend fun updateDetailAlbumData(albumId: Int): AlbumWithTracks {
+        if (isNetworkConnectivityError()) {
+            val cachedAlbum = albumsDao.getAlbumWithTracks(albumId)
+            if (cachedAlbum.isEmpty()) {
+                throw Exception("No data has been stored locally")
+            }
+            return cachedAlbum.first()
+        }
+        return AlbumServiceAdapter.getInstance().getAlbum(application, albumId)
+    }
+
     suspend fun insertAlbums(albums: List<Album>) {
-        for (album in albums) {
-            albumsDao.insert(album)
+        albumsDao.insertAlbums(albums)
+    }
+
+    suspend fun insertAlbumWithTracks(albumWithTracks: AlbumWithTracks) {
+        albumsDao.insertAlbum(albumWithTracks.album)
+        if (!albumWithTracks.tracks.isEmpty()) {
+            Log.d("AlbumRepository", "Storing tracks")
+            albumsDao.insertTracks(albumWithTracks.tracks)
+            Log.d("AlbumRepository", "Storing tracks completed")
         }
     }
 
@@ -41,6 +61,7 @@ class AlbumRepository(private val application: Application, private val albumsDa
     ) {
         AlbumServiceAdapter.getInstance().postAlbum(application, album, onCompleted, onError)
     }
+
 
     fun postTrackToAlbum(
         albumId: Int,

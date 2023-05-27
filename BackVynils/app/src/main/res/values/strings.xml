@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">BackVynils</string>
 
-    <string name="title_albums_list_fragment">Albums</string>
+    <string name="title_albums_menu">Albums</string>
+    <string name="title_albums_list_fragment">My Albums</string>
     <string name="see_album_from_list_fragment">See Album Detail</string>
 
-    <string name="title_artists_list_fragment">Artists</string>
+    <string name="title_artists_list_fragment">My Artists</string>
     <string name="title_collectors_list_fragment">Collectors</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -49,5 +50,8 @@
     </string-array>
     <string name="last_comment">Last Comment:</string>
     <string name="favorite_performer">Favorite Performance:</string>
-
+    <string name="artist_detail_birthday">Birthday</string>
+    <string name="album_detail_divider">|</string>
+    <string name="artist_detail_cover_image">Artists’ cover image</string>
+    <string name="menu_artist_option">Artists</string>
 </resources>

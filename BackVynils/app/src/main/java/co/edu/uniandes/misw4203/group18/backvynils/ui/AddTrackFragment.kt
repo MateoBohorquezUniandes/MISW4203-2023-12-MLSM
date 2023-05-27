@@ -54,9 +54,15 @@ class AddTrackFragment : Fragment() {
 
                 val track = Track(
                     trackId = 0,
+                    fkAlbumId = albumId.toInt(),
                     name = name,
                     duration = duration
                 )
+
+                if (viewModel.isNetworkErrorShown.value == true) {
+                    Toast.makeText(requireContext(), "No connection: Track cannot be added", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
 
                 viewModel.addTrackToAlbum(albumId.toInt(), track)
                 Toast.makeText(requireContext(), "Track added successfully", Toast.LENGTH_SHORT).show()

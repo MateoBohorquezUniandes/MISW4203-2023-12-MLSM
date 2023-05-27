@@ -8,7 +8,10 @@ class AlbumWithTracks(
     @Embedded val album: Album,
     @Relation(
         parentColumn = "albumId",
-        entityColumn = "trackId"
+        entityColumn = "fkAlbumId"
     )
     val tracks: List<Track>
-)
+) {
+    val numberOfTracks: String
+        get() = "${tracks.size}\nTracks"
+}
