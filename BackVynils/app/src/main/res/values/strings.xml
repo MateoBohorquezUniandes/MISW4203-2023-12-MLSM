@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">BackVynils</string>
 
-    <string name="title_albums_list_fragment">Albums</string>
+    <string name="title_albums_menu">Albums</string>
+    <string name="title_albums_list_fragment">My Albums</string>
     <string name="see_album_from_list_fragment">See Album Detail</string>
 
     <string name="title_artists_list_fragment">My Artists</string>
