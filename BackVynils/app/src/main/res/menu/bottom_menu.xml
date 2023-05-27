@@ -4,7 +4,7 @@
     <item
         android:id="@+id/albumListFragment"
         android:icon="@drawable/ic_albums_menu_item_24"
-        android:title="@string/title_albums_list_fragment" />
+        android:title="@string/title_albums_menu" />
     <item
         android:id="@+id/artistListFragment"
         android:icon="@drawable/ic_artists_menu_item_24"

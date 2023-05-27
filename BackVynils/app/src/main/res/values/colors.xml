@@ -10,4 +10,12 @@
     <color name="stroke_color">#2E3030</color>
     <color name="TextGray">#343F4B</color>
 
+    <color name="title_primary">#FF000000</color>
+    <color name="title_secondary">#171717</color>
+
+    <color name="list_item_title_primary">#0A0A0A</color>
+    <color name="list_item_title_secondary">#171717</color>
+
+    <color name="album_detail_description">#191919</color>
+
 </resources>

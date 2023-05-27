@@ -23,7 +23,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
-                android:contentDescription="@{albumWithTracks.album.name"
+                android:contentDescription="@{albumWithTracks.album.name}"
                 app:imageUrl="@{albumWithTracks.album.cover}"
                 app:layout_constraintDimensionRatio="1:1"
                 app:srcCompat="@drawable/ic_albums_menu_item_24" />
@@ -35,6 +35,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@{albumWithTracks.album.title}"
+                android:textAlignment="gravity"
+                android:textColor="@color/title_primary"
+                android:textDirection="locale"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -50,6 +53,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@{albumWithTracks.album.genre}"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/title_secondary"
+                    android:textDirection="locale"
                     android:textStyle="bold" />
 
                 <TextView
@@ -59,6 +65,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
                     android:text="@string/album_detail_divider"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/title_secondary"
+                    android:textDirection="locale"
                     android:textStyle="bold" />
 
                 <TextView
@@ -66,6 +75,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{albumWithTracks.album.parsedReleaseDate}"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/title_secondary"
+                    android:textDirection="locale"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -75,7 +87,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@{albumWithTracks.album.description}" />
+                android:text="@{albumWithTracks.album.description}"
+                android:textAlignment="gravity"
+                android:textColor="@color/album_detail_description"
+                android:textDirection="locale" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,6 +107,8 @@
                     android:layout_marginEnd="10dp"
                     android:text="@{albumWithTracks.numberOfTracks}"
                     android:textAlignment="center"
+                    android:textColor="@color/title_primary"
+                    android:textDirection="locale"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
