@@ -99,7 +99,7 @@
                     android:id="@+id/addTrackButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:padding="12dp"
                     android:backgroundTint="#77D353"
                     android:text="@string/add_track"
                     android:textColor="#343F4B" />
