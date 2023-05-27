@@ -24,6 +24,11 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             field = value
             notifyDataSetChanged()
         }
+    var collector: Collector = Collector(0,"","","",0,0)
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectorViewHolder {
         val withCollectorDataBinding: CollectorItemBinding = DataBindingUtil.inflate(

@@ -1,5 +1,6 @@
 package co.edu.uniandes.misw4203.group18.backvynils.network
 
+import android.app.Application
 import android.content.Context
 import co.edu.uniandes.misw4203.group18.backvynils.models.Album
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
@@ -8,6 +9,9 @@ import co.edu.uniandes.misw4203.group18.backvynils.models.Comments
 import com.android.volley.VolleyError
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class CollectorServiceAdapter {
 
@@ -24,7 +28,34 @@ class CollectorServiceAdapter {
 
     private val collectorPath: String = "collectors"
 
-    fun getCollectors(
+    suspend fun getCollectors(context: Context) = suspendCoroutine<List<Collector>> { cont ->
+        VolleyServiceBroker.getInstance(context).getRequest(
+            collectorPath,
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Collector>()
+
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(
+                        i,
+                        Collector(
+                            collectorId = item.getInt("id"),
+                            name = item.getString("name"),
+                            email = item.getString("email"),
+                            telephone = item.getString("telephone"),
+                            comments = extractIdComments(item),
+                            favoritePerformers = extractIdArtist(item)
+                        )
+                    )
+                }
+                cont.resume(list)
+            },{
+                cont.resumeWithException(it)
+            }
+        )
+    }
+    /*fun getCollectors(
         context: Context,
         onComplete: (resp: List<Collector>) -> Unit,
         onError: (error: VolleyError) -> Unit
@@ -44,7 +75,8 @@ class CollectorServiceAdapter {
                             name = item.getString("name"),
                             email = item.getString("email"),
                             telephone = item.getString("telephone"),
-                            comments = extractListComments(item)
+                            comments = extractIdComments(item),
+                            favoritePerformers = extractIdArtist(item)
                         )
                     )
                 }
@@ -53,13 +85,10 @@ class CollectorServiceAdapter {
                 onError(it)
             }
         )
-    }
-    fun getSingleCollector(
+    }*/
+    suspend fun getSingleCollector(
         id: String,
-        context: Context,
-        onComplete: (resp: Collector) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ){
+        context: Context) = suspendCoroutine<Collector> { cont ->
         VolleyServiceBroker.getInstance(context).getRequest(
             collectorPath + "/" + id,
             {response ->
@@ -69,44 +98,45 @@ class CollectorServiceAdapter {
                     resp.getString("name"),
                     resp.getString("telephone"),
                     resp.getString("email"),
-                    extractListComments(resp),
+                    extractIdComments(resp),
+                    extractIdArtist(resp)
                 )
-                onComplete(coll)
+                cont.resume(coll)
             },{
-                onError(it)
+                cont.resumeWithException(it)
             }
         )
     }
-
-    fun extractListComments(resp:JSONObject): List<Comments> {
-        val comentarios: MutableList<Comments> = mutableListOf()
+    fun extractIdComments(resp:JSONObject): Int {
         val array: JSONArray = resp.getJSONArray("comments")
-        for (i in 1.. array.length()){
-            val commentJson: JSONObject = array.getJSONObject(i)
-            val commentReturn: Comments = Comments(commentJson.getInt("id"),commentJson.getString("description"),commentJson.getInt("rating"))
-            comentarios[i] = commentReturn
-        }
-        return comentarios
+        val commentJson: JSONObject = array.getJSONObject(0)
+        return commentJson.getInt("id")
     }
 
-    fun extractListArtist(resp:JSONObject): List<Artist> {
-        val artistas: MutableList<Artist> = mutableListOf()
+    fun extractIdArtist(resp:JSONObject): Int {
         val array: JSONArray = resp.getJSONArray("favoritePerformers")
-        for (i in 1.. array.length()){
-            val artistJson: JSONObject = array.getJSONObject(i)
-            val artistReturn: Artist = Artist(artistJson.getInt("artistId"),artistJson.getString("name"),artistJson.getString("date"),artistJson.getString("description"),artistJson.getString("image"))
-            artistas[i] = artistReturn
-        }
-        return artistas
+        val commentJson: JSONObject = array.getJSONObject(0)
+        return commentJson.getInt("id")
     }
 
-    /*fun getCollectorsOffline(onComplete: (resp: List<Collector>) -> Unit){
-        val list = mutableListOf<Collector>()
-        list.add(0, Collector(0,"Alexandrey","",""))
-        list.add(1, Collector(1,"Lara","",""))
-        list.add(2,Collector(2,"Melissa","",""))
-        list.add(3,Collector(3,"Santiago","",""))
-        list.add(4,Collector(4,"Mateo","",""))
-        onComplete(list)
-    }*/
+    fun extractComments(resp:JSONObject): Comments {
+        val array: JSONArray = resp.getJSONArray("comments")
+        val commentJson: JSONObject = array.getJSONObject(0)
+        val commentReturn: Comments = Comments(commentJson.getInt("id"),commentJson.getString("description"),commentJson.getInt("rating"))
+        return commentReturn
+    }
+    suspend fun getCommentCollector(
+        id: String,
+        context: Context) = suspendCoroutine<Comments> { cont ->
+        VolleyServiceBroker.getInstance(context).getRequest(
+            collectorPath + "/" + id,
+            {response ->
+                val resp = JSONObject(response)
+                val comment: Comments = extractComments(resp)
+                cont.resume(comment)
+            },{
+                cont.resumeWithException(it)
+            }
+        )
+    }
 }

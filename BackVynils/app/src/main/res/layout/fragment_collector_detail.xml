@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="collector" type="co.edu.uniandes.misw4203.group18.backvynils.models.Collector" />
+        <variable name="comments" type="co.edu.uniandes.misw4203.group18.backvynils.models.Comments" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,13 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:text="@{collector.name}"
-            android:textSize="28sp"
+            android:textSize="35sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/collectorTel"
             android:layout_width="match_parent"
             android:layout_height="57dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:text="@{collector.telephone}"
             android:textSize="20sp"/>
 
@@ -29,7 +34,53 @@
             android:id="@+id/collectorMail"
             android:layout_width="match_parent"
             android:layout_height="57dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:text="@{collector.email}"
             android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/collectorArtist"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Favorite Performance:"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/collectorDetailRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            tools:listitem="@layout/artist_item"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/collectorComment"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Last Comment:"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/collectorCommentText"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="@{comments.description}"
+            android:textSize="20sp"/>
+
+        <!--<TextView
+            android:id="@+id/collectorCommentRating"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:text="@{comments.rating}"
+            android:textSize="20sp"/>-->
     </LinearLayout>
 </layout>

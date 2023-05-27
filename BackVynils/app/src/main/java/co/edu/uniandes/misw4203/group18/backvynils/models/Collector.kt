@@ -8,7 +8,7 @@ data class Collector(
    val name: String,
    val telephone: String,
    val email: String,
-   val comments: List<Comments>,
-   /*val favoritePerformers: List<Artist>*/
+   val comments: Int,
+   val favoritePerformers: Int
 ) {
 }
