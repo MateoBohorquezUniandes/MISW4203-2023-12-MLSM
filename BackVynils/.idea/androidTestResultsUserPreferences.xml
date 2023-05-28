@@ -92,6 +92,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_22" value="120" />
                   <entry key="Pixel_6_API_24" value="120" />
                   <entry key="Pixel_6_Pro_API_22" value="120" />
                   <entry key="Tests" value="360" />
@@ -132,6 +133,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_22" value="120" />
                   <entry key="Pixel_6_API_24" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
