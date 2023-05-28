@@ -16,7 +16,7 @@
         android:paddingTop="20dp"
         android:layout_marginBottom="15dp"
         android:text="@string/add_track_to_album"
-        android:textColor="@color/TextGray"
+        android:textColor="@color/list_item_title_primary"
         android:textSize="30sp"
         android:textStyle="bold"/>
 
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/TextGray"
+        android:textColor="@color/list_item_title_primary"
         android:padding="8dp"
         android:text="@string/track"/>
 
@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:padding="8dp"
+            android:backgroundTint="#FFFFFF"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="@string/duration"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/TextGray"
+        android:textColor="@color/list_item_title_primary"
         android:padding="8dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -65,6 +66,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="text"
+            android:backgroundTint="#FFFFFF"
             android:padding="8dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
