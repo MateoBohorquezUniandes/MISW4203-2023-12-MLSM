@@ -77,7 +77,7 @@ class AlbumListFragment : Fragment() {
                 it.apply {
                     viewModelAdapter!!.albums = this
                 }
-                viewModel.storeDataFromNetwork()
+                viewModel.storeAlbumListDataFromNetwork()
             }
         }
 

@@ -4,13 +4,13 @@
     <item
         android:id="@+id/albumListFragment"
         android:icon="@drawable/ic_albums_menu_item_24"
-        android:title="@string/title_albums_list_fragment" />
+        android:title="@string/title_albums_menu" />
     <item
         android:id="@+id/artistListFragment"
         android:icon="@drawable/ic_artists_menu_item_24"
-        android:title="@string/title_artists_list_fragment" />
+        android:title="@string/menu_artist_option" />
     <item
         android:id="@+id/collectorListFragment"
         android:icon="@drawable/ic_collectors_menu_item_24"
-        android:title="@string/title_collectors_list_fragment" />
+        android:title="@string/title_collectors_list_menu" />
 </menu>

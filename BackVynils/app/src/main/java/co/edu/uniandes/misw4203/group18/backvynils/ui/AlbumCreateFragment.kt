@@ -18,7 +18,7 @@ import java.text.ParseException
 
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [Fragment] subclass for creating albums.
  * Use the [AlbumCreateFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -107,7 +107,12 @@ class AlbumCreateFragment : Fragment() {
                 recordLabel = recordLabel
             )
 
-            viewModel.postAlbum(album)
+            if (viewModel.isNetworkErrorShown.value == true) {
+                Toast.makeText(requireContext(), "No connection: Album cannot be created", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+                viewModel.postAlbum(album)
             Toast.makeText(requireContext(), "Album added successfully", Toast.LENGTH_SHORT).show()
 
             findNavController().popBackStack(R.id.albumListFragment, false)

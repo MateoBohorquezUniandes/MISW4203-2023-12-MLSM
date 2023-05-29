@@ -9,19 +9,13 @@ import co.edu.uniandes.misw4203.group18.backvynils.R
 import co.edu.uniandes.misw4203.group18.backvynils.databinding.ArtistItemBinding
 import co.edu.uniandes.misw4203.group18.backvynils.models.Artist
 
+class CollectorDetailAdapter: RecyclerView.Adapter<CollectorDetailAdapter.CollectorViewHolder>(){
 
-class ArtistsAdapter(val itemListener: ArtistItemListener) : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>() {
-
-    class ArtistViewHolder(val viewDataBinding: ArtistItemBinding) :
-        RecyclerView.ViewHolder(viewDataBinding.root) {
+    class CollectorViewHolder(val viewDataBinding: ArtistItemBinding) : RecyclerView.ViewHolder(viewDataBinding.root){
         companion object {
             @LayoutRes
             val LAYOUT = R.layout.artist_item
         }
-    }
-
-    interface ArtistItemListener {
-        fun onArtistItemCLick(artist: Artist)
     }
 
     var artists: List<Artist> = emptyList()
@@ -30,22 +24,18 @@ class ArtistsAdapter(val itemListener: ArtistItemListener) : RecyclerView.Adapte
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectorViewHolder {
         val withArtistDataBinding: ArtistItemBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context), ArtistViewHolder.LAYOUT, parent, false
+            LayoutInflater.from(parent.context), CollectorViewHolder.LAYOUT, parent, false
         )
-        return ArtistViewHolder(withArtistDataBinding)
-    }
-
-    override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
-        val artist = artists[position]
-        holder.viewDataBinding.also { it.artist = artist }
-        holder.itemView.setOnClickListener{
-            itemListener.onArtistItemCLick(artist)
-        }
+        return CollectorViewHolder(withArtistDataBinding)
     }
 
     override fun getItemCount(): Int {
         return artists.size
     }
+
+    override fun onBindViewHolder(holder: CollectorViewHolder, position: Int) {
+        holder.viewDataBinding.also { it.artist = artists[position]}
+        }
 }
